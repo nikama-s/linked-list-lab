@@ -38,9 +38,14 @@ class LinkedList {
     this.checkIsCharacter(element);
     const newNode = new Node(element);
 
-    newNode.next = this.head;
-    this.tail.next = newNode;
-    this.tail = newNode;
+    if (this._length === 0) {
+      this.head = this.tail = newNode;
+      newNode.next = newNode;
+    } else {
+      newNode.next = this.head;
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
 
     this._length++;
   }
